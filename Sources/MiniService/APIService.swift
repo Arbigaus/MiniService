@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol APIServiceProtocol {
-    func setBaseURL(_ baseUrl: String)
+    static func setBaseURL(_ baseUrl: String)
     func get<ResponseType: Decodable>(endpoint: String) async throws -> ResponseType
     func post<ResponseType: Decodable, PayloadType: Encodable>(endpoint: String, payload: PayloadType) async throws -> ResponseType
     func put<ResponseType: Decodable, PayloadType: Encodable>(endpoint: String, payload: PayloadType) async throws -> ResponseType
@@ -16,9 +16,9 @@ public protocol APIServiceProtocol {
 
 public final class APIService: APIServiceProtocol {
     // MARK: - Variables
-    private let baseUrlKey = "baseUrl"
+    private static let baseUrlKey = "baseUrl"
     var baseURL: String {
-        return UserDefaults.standard.string(forKey: baseUrlKey) ?? ""
+        return UserDefaults.standard.string(forKey: APIService.baseUrlKey) ?? ""
     }
 
     // MARK: - Intializers
@@ -60,7 +60,7 @@ public final class APIService: APIServiceProtocol {
         return decodedData
     }
 
-    public func setBaseURL(_ baseUrl: String) {
+    public static func setBaseURL(_ baseUrl: String) {
         UserDefaults.standard.set(baseUrl, forKey: baseUrlKey)
     }
 
