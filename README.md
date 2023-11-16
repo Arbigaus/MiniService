@@ -85,3 +85,16 @@ do {
 } catch(let error) {
     // Handle with error
 }
+```
+
+### Headers:
+
+To pass `Headers` in the requests, you can use the method `insertHeader`, passing a dictionary in as parameters.
+
+```Swift
+let headers: [String: String] = ["Content-Type": "application/json", "Authorization": "Bearer token"]
+
+let getObject: MyObject = try await service.insertHeader(headers).get(endpoint: "endpoint") 
+let postObject: MyObject = try await service.insertHeader(headers).post(endpoint: "endpoint", payload: accountToCreate) 
+let putObject: MyObject = try await service.insertHeader(headers).put(endpoint: "endpoint", payload: accountToCreate) 
+```
