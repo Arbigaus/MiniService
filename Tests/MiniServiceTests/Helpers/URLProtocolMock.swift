@@ -9,6 +9,7 @@ import Foundation
 
 final class URLProtocolMock: URLProtocol {
     static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data?))?
+    private(set) static var headers: [String: String]?
 
     override class func canInit(with request: URLRequest) -> Bool {
         return true
@@ -30,7 +31,7 @@ final class URLProtocolMock: URLProtocol {
         guard let handler = URLProtocolMock.requestHandler else {
             fatalError("Undefined handler")
         }
-
+        URLProtocolMock.headers = request.allHTTPHeaderFields
         do {
             let (response, data) = try handler(request)
             client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)

@@ -9,6 +9,7 @@ import Foundation
 
 public protocol APIServiceProtocol {
     static func setBaseURL(_ baseUrl: String)
+    func insertHeader(_ headers: [String: String]?) -> APIServiceProtocol
     func get<ResponseType: Decodable>(endpoint: String) async throws -> ResponseType
     func post<ResponseType: Decodable, PayloadType: Encodable>(endpoint: String, payload: PayloadType) async throws -> ResponseType
     func put<ResponseType: Decodable, PayloadType: Encodable>(endpoint: String, payload: PayloadType) async throws -> ResponseType
@@ -17,6 +18,7 @@ public protocol APIServiceProtocol {
 public final class APIService: APIServiceProtocol {
     // MARK: - Variables
     private static let baseUrlKey = "baseUrl"
+    private var headers: [String: String]?
     var baseURL: String {
         return UserDefaults.standard.string(forKey: APIService.baseUrlKey) ?? ""
     }
@@ -44,6 +46,10 @@ public final class APIService: APIServiceProtocol {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = body
 
+        headers?.forEach { key, value in
+            request.setValue(value, forHTTPHeaderField: key)
+        }
+
         return request
     }
 
@@ -59,9 +65,19 @@ public final class APIService: APIServiceProtocol {
         let decodedData = try JSONDecoder().decode(ResponseType.self, from: data)
         return decodedData
     }
-
+    
+    /// Method to set the `baseURL` from your API
+    /// - Parameter baseUrl: String with te base url: "https"//baseurl.com/api/
     public static func setBaseURL(_ baseUrl: String) {
-        UserDefaults.standard.set(baseUrl, forKey: baseUrlKey)
+        UserDefaults.standard.set(baseUrl, forKey: APIService.baseUrlKey)
+    }
+
+    /// Insert a header dictionary in the request
+    /// - Parameter headers: The dictionary that will be the header in the request
+    /// - Returns: Return the class itself. To be uses in the API callers.
+    public func insertHeader(_ headers: [String: String]?) -> APIServiceProtocol {
+        self.headers = headers
+        return self
     }
 
     public func get<ResponseType: Decodable>(endpoint: String) async throws -> ResponseType {

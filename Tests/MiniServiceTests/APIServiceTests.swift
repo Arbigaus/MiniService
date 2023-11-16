@@ -95,6 +95,26 @@ final class APIServiceTests: XCTestCase {
                      method: .put)
     }
 
+    func test_requestHeaders() async {
+        let expectedHeaders: [String: String] = ["Content-Type": "application/json", "Authorization": "Bearer token"]
+
+        URLProtocolMock.requestHandler = { request in
+            let response = self.makeResponse()
+            return (response!, Data())
+        }
+
+        let payload = FakePayloadType(id: 1, title: "Some Title")
+        _ = await makePostFromSUT(with: "postTest", payload: payload, headers: expectedHeaders)
+
+        guard let lastRequest = URLProtocolMock.headers else {
+            XCTFail("Expected a request to be made")
+            return
+        }
+        expectedHeaders.forEach { key, value in
+            XCTAssertEqual(lastRequest[key], value, "Expected value for header \(key) to be \(value)")
+        }
+    }
+
     private func expect(wit response: HTTPURLResponse?,
                         data: Data? = nil,
                         endpoint: String,
@@ -133,29 +153,38 @@ final class APIServiceTests: XCTestCase {
         }
     }
 
-    private func makeGetFromSUT(with endpoint: String) async -> FakeResult {
+    private func makeGetFromSUT(with endpoint: String, headers: [String: String]? = nil) async -> FakeResult {
         do {
-            let result: FakeResponseType = try await makeSUT().get(endpoint: endpoint)
+            let result: FakeResponseType = try await makeSUT()
+                .insertHeader(headers)
+                .get(endpoint: endpoint)
+
             return .success([result])
         } catch (let error as NSError) {
             return .failure(error)
         }
     }
 
-    private func makePostFromSUT(with endpoint: String, payload: FakePayloadType?) async -> FakeResult {
+    private func makePostFromSUT(with endpoint: String, payload: FakePayloadType?, headers: [String: String]? = nil) async -> FakeResult {
         let (optionalPayload, _) = makePayload()
         do {
-            let result: FakeResponseType = try await makeSUT().post(endpoint: "postTest", payload: payload ?? optionalPayload)
+            let result: FakeResponseType = try await makeSUT()
+                .insertHeader(headers)
+                .post(endpoint: "postTest", payload: payload ?? optionalPayload)
+
             return .success([result])
         } catch (let error as NSError) {
             return .failure(error)
         }
     }
 
-    private func makePutFromSUT(with endpoint: String, payload: FakePayloadType?) async -> FakeResult {
+    private func makePutFromSUT(with endpoint: String, payload: FakePayloadType?, headers: [String: String]? = nil) async -> FakeResult {
         let (optionalPayload, _) = makePayload()
         do {
-            let result: FakeResponseType = try await makeSUT().put(endpoint: "postTest", payload: payload ?? optionalPayload)
+            let result: FakeResponseType = try await makeSUT()
+                .insertHeader(headers)
+                .put(endpoint: "postTest", payload: payload ?? optionalPayload)
+
             return .success([result])
         } catch (let error as NSError) {
             return .failure(error)
@@ -166,9 +195,9 @@ final class APIServiceTests: XCTestCase {
         HTTPURLResponse(url: anyURL(), statusCode: code, httpVersion: nil, headerFields: nil)
     }
 
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIService {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> APIServiceProtocol {
         let sut = APIService()
-        sut.setBaseURL(baseURL())
+        APIService.setBaseURL(baseURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
