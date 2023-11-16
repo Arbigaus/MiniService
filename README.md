@@ -89,7 +89,7 @@ do {
 
 ### Headers:
 
-To pass `Headers` in the requests, you can use the method `insertHeader`, passing a dictionary in as parameters.
+To pass `Headers` in the requests, you can use the method `insertHeader`, passing a dictionary as parameter.
 
 ```Swift
 let headers: [String: String] = ["Content-Type": "application/json", "Authorization": "Bearer token"]
