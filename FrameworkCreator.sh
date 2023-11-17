@@ -20,6 +20,10 @@ xcodebuild -create-xcframework \
     -framework ./build/$SchemeName-macOS.xcarchive/Products/usr/local/lib/MiniService.framework \
     -output ./$SchemeName.xcframework
 
-echo "Removing the build folder"
-rm -rf build/
-echo "Build folder removed"
+echo "Creating the zip file"
+zip ./$SchemeName.zip ./$SchemeName.xcframework
+echo "File compacted succefull"
+
+echo "Removing the build folder and the framework file"
+rm -rf ./build/ ./$SchemeName.xcframework
+echo "Build folder and framework file removed"
