@@ -11,6 +11,10 @@ jobs:
   archive:
 
     runs-on: macos-latest
+    outputs:
+      version: ${{ steps.create_release.outputs.version }}
+      upload_url: ${{ steps.upload_release_asset.outputs.upload_url }}
+
     steps:
       - uses: actions/checkout@v3
       - name: Archive
@@ -26,13 +30,14 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
+        run: echo "::set-output name=version::${{ steps.package_version.outputs.version }}"
       - name: Upload Release Asset
-        id: upload-release-asset 
+        id: upload_release_asset 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GH }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          upload_url: ${{ steps.upload_release_asset.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: MiniService.zip
           asset_name: MiniService.zip
           asset_content_type: application/zip
