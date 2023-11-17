@@ -5,7 +5,7 @@ name: Archive
 on:
   push:
     tags:
-      - '*'
+      - 'v*'
 
 jobs:
   archive:
@@ -15,7 +15,15 @@ jobs:
       - uses: actions/checkout@v3
       - name: Archive
         run: ./FrameworkCreator.sh
-        
-      - uses: ncipollo/release-action@v1
+
+      - name: Set enviroment for github-release
+        run: |
+          echo ::set-env name=RELEASE_TAG::"GITHUB_REF_NAME"
+          echo ::set-env name=RELEASE_NAME::"$GITHUB_WORKFLOW"
+
+      - uses: meeDamian/github-release@2.0
         with:
-          artifacts: "MiniService.xcframework"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.RELEASE_TAG }}
+          name: ${{ env.RELEASE_NAME }}
+          files: MiniService.xcframework
