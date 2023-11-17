@@ -16,13 +16,13 @@ jobs:
       - name: Archive
         run: ./FrameworkCreator.sh
       - name: Token Test
-        run: echo ${{ secrets.TOKEN_GH }}
+        run: echo ${{ secrets.TOKEN }}
 
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GH }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
