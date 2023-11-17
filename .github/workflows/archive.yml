@@ -8,7 +8,15 @@ on:
       - 'v*'
 
 jobs:
+  unit-tests:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run tests
+      run: swift test -v
+
   archive:
+    needs: unit-tests
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
