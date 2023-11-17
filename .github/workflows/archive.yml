@@ -30,7 +30,8 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-        run: echo "::set-output name=version::${{ steps.package_version.outputs.version }}"
+          run: echo "::set-output name=version::${{ steps.package_version.outputs.version }}"
+          
       - name: Upload Release Asset
         id: upload_release_asset 
         uses: actions/upload-release-asset@v1
