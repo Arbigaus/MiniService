@@ -1,0 +1,22 @@
+# This workflow will build, run tests and create the archive to generate a version from the Package
+
+name: Release
+
+on:
+  workflow_run:
+    workflows:
+      - Archive
+    types:
+      - completed
+
+jobs:
+  release:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "MiniService.xcframework"
