@@ -1,27 +1,18 @@
-# This workflow will build, run tests and create the archive to generate a version from the Package
+# This workflow will create a release and send the zip file to it
 
-name: Archive
+name: Release
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_run:
+    workflows: ["Archive"]
+    types:
+      - completed
 
 jobs:
-  archive:
-
-    runs-on: macos-latest
+  release:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Archive
-        run: ./FrameworkCreator.sh
-
-      
-
-release:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Create Release
+      - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -42,4 +33,3 @@ release:
           asset_path: ./MiniService.zip
           asset_name: MiniService.zip
           asset_content_type: application/zip
-  
