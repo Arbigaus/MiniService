@@ -9,9 +9,34 @@ on:
 
 jobs:
   archive:
-
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - name: Archive
         run: ./FrameworkCreator.sh
+
+  release:
+    needs: archive
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+              
+      - name: Upload Release Asset
+        id: upload_release_asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GH }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./MiniService.zip
+          asset_name: MiniService.zip
+          asset_content_type: application/zip
