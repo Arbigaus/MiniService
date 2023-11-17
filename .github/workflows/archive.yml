@@ -21,6 +21,7 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GH }}
+        run: echo ${{ secrets.TOKEN_GH }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
