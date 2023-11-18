@@ -5,7 +5,7 @@ name: Archive
 on:
   push:
     tags:
-      - 'v*'
+      - '*'
 
 jobs:
   unit-tests:
