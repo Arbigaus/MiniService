@@ -23,8 +23,3 @@ xcodebuild -create-xcframework \
 echo "Creating the zip file"
 zip ./$SchemeName.zip ./$SchemeName.xcframework
 echo "File compacted succefull"
-
-echo "Removing the build folder and the framework file"
-rm -rf ./build/ ./$SchemeName.xcframework
-echo "Build folder and framework file removed"
-
