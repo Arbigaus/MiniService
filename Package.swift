@@ -29,5 +29,8 @@ let package = Package(
         .testTarget(
             name: "MiniServiceTests",
             dependencies: ["MiniService"]),
+        .binaryTarget(
+            name: "MiniServiceSDK",
+            path: "MiniService.xcframework")
     ]
 )
