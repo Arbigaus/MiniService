@@ -1,0 +1,64 @@
+---
+triple:          'x86_64-apple-darwin'
+binary-path:     '/Users/arbigaus/Library/Developer/Xcode/DerivedData/MiniService-cgmtcmmonltasobaeobuhhwmivkk/Build/Intermediates.noindex/ArchiveIntermediates/MiniService/InstallationBuildProductsLocation/usr/local/lib/MiniService.framework/MiniService'
+relocations:
+  - { offsetInCU: 0x4F, offset: 0x2F9DF, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC10baseUrlKey33_186B69A83AA054F6976F0E6398887C91LLSSvpZ.0', symObjAddr: 0xC700, symBinAddr: 0xC750, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x2F9F9, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC10baseUrlKey33_186B69A83AA054F6976F0E6398887C91LLSSvpZ.1', symObjAddr: 0xC708, symBinAddr: 0xC758, symSize: 0x0 }
+  - { offsetInCU: 0x79, offset: 0x2FA09, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC10baseUrlKey33_186B69A83AA054F6976F0E6398887C91LL_WZ', symObjAddr: 0x0, symBinAddr: 0x27B0, symSize: 0x20 }
+  - { offsetInCU: 0xBD, offset: 0x2FA4D, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCACycfC', symObjAddr: 0x20, symBinAddr: 0x27D0, symSize: 0x20 }
+  - { offsetInCU: 0xFA, offset: 0x2FA8A, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCACycfc', symObjAddr: 0x40, symBinAddr: 0x27F0, symSize: 0x20 }
+  - { offsetInCU: 0x163, offset: 0x2FAF3, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC16createURLRequest33_186B69A83AA054F6976F0E6398887C91LL_6method4body10Foundation0E0VSS_AC6MethodAELLOAH4DataVSgtF', symObjAddr: 0x60, symBinAddr: 0x2810, symSize: 0x370 }
+  - { offsetInCU: 0x317, offset: 0x2FCA7, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC13handleRequest33_186B69A83AA054F6976F0E6398887C91LL4with3andx10Foundation4DataV_So13NSURLResponseCtKSeRzlF', symObjAddr: 0x590, symBinAddr: 0x2D40, symSize: 0x120 }
+  - { offsetInCU: 0x3A3, offset: 0x2FD33, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC10setBaseURLyySSFZ', symObjAddr: 0x6B0, symBinAddr: 0x2E60, symSize: 0xD0 }
+  - { offsetInCU: 0x3D5, offset: 0x2FD65, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC12insertHeaderyAA0C8Protocol_pSDyS2SGSgF', symObjAddr: 0x780, symBinAddr: 0x2F30, symSize: 0x70 }
+  - { offsetInCU: 0x3FC, offset: 0x2FD8C, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC3get8endpointxSS_tYaKSeRzlF', symObjAddr: 0x7F0, symBinAddr: 0x2FA0, symSize: 0x80 }
+  - { offsetInCU: 0x482, offset: 0x2FE12, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC3get8endpointxSS_tYaKSeRzlFTY0_', symObjAddr: 0x870, symBinAddr: 0x3020, symSize: 0xC0 }
+  - { offsetInCU: 0x50F, offset: 0x2FE9F, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC3get8endpointxSS_tYaKSeRzlFTQ1_', symObjAddr: 0x930, symBinAddr: 0x30E0, symSize: 0xA0 }
+  - { offsetInCU: 0x5DE, offset: 0x2FF6E, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC3get8endpointxSS_tYaKSeRzlFTY2_', symObjAddr: 0x9D0, symBinAddr: 0x3180, symSize: 0x270 }
+  - { offsetInCU: 0x6E9, offset: 0x30079, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC3get8endpointxSS_tYaKSeRzlFTY3_', symObjAddr: 0xC40, symBinAddr: 0x33F0, symSize: 0x1D0 }
+  - { offsetInCU: 0x7E7, offset: 0x30177, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC4post8endpoint7payloadxSS_q_tYaKSeRzSER_r0_lF', symObjAddr: 0x15E0, symBinAddr: 0x3D90, symSize: 0xA0 }
+  - { offsetInCU: 0x8AA, offset: 0x3023A, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC4post8endpoint7payloadxSS_q_tYaKSeRzSER_r0_lFTY0_', symObjAddr: 0x1680, symBinAddr: 0x3E30, symSize: 0x2C0 }
+  - { offsetInCU: 0xA11, offset: 0x303A1, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC4post8endpoint7payloadxSS_q_tYaKSeRzSER_r0_lFTQ1_', symObjAddr: 0x1940, symBinAddr: 0x40F0, symSize: 0xA0 }
+  - { offsetInCU: 0xB29, offset: 0x304B9, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC3put8endpoint7payloadxSS_q_tYaKSeRzSER_r0_lF', symObjAddr: 0x19E0, symBinAddr: 0x4190, symSize: 0xA0 }
+  - { offsetInCU: 0xBEC, offset: 0x3057C, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC3put8endpoint7payloadxSS_q_tYaKSeRzSER_r0_lFTY0_', symObjAddr: 0x1A80, symBinAddr: 0x4230, symSize: 0x2C0 }
+  - { offsetInCU: 0xD53, offset: 0x306E3, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC3put8endpoint7payloadxSS_q_tYaKSeRzSER_r0_lFTQ1_', symObjAddr: 0x1D40, symBinAddr: 0x44F0, symSize: 0xA0 }
+  - { offsetInCU: 0xE6B, offset: 0x307FB, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC3put8endpoint7payloadxSS_q_tYaKSeRzSER_r0_lFTY2_', symObjAddr: 0x1DE0, symBinAddr: 0x4590, symSize: 0x290 }
+  - { offsetInCU: 0xFB5, offset: 0x30945, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceC3put8endpoint7payloadxSS_q_tYaKSeRzSER_r0_lFTY3_', symObjAddr: 0x2070, symBinAddr: 0x4820, symSize: 0x1F0 }
+  - { offsetInCU: 0x10F2, offset: 0x30A82, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCfd', symObjAddr: 0x2260, symBinAddr: 0x4A10, symSize: 0x20 }
+  - { offsetInCU: 0x112D, offset: 0x30ABD, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCfD', symObjAddr: 0x2280, symBinAddr: 0x4A30, symSize: 0x20 }
+  - { offsetInCU: 0x11A2, offset: 0x30B32, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCAA0C8ProtocolA2aDP10setBaseURLyySSFZTW', symObjAddr: 0x22A0, symBinAddr: 0x4A50, symSize: 0xD0 }
+  - { offsetInCU: 0x120E, offset: 0x30B9E, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCAA0C8ProtocolA2aDP12insertHeaderyAaD_pSDyS2SGSgFTW', symObjAddr: 0x2370, symBinAddr: 0x4B20, symSize: 0x80 }
+  - { offsetInCU: 0x1249, offset: 0x30BD9, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCAA0C8ProtocolA2aDP3get8endpointqd__SS_tYaKSeRd__lFTW', symObjAddr: 0x23F0, symBinAddr: 0x4BA0, symSize: 0x80 }
+  - { offsetInCU: 0x1280, offset: 0x30C10, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCAA0C8ProtocolA2aDP3get8endpointqd__SS_tYaKSeRd__lFTWTQ0_', symObjAddr: 0x2470, symBinAddr: 0x4C20, symSize: 0x50 }
+  - { offsetInCU: 0x12D7, offset: 0x30C67, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCAA0C8ProtocolA2aDP4post8endpoint7payloadqd__SS_qd_0_tYaKSeRd__SERd_0_r0_lFTW', symObjAddr: 0x24C0, symBinAddr: 0x4C70, symSize: 0xA0 }
+  - { offsetInCU: 0x130E, offset: 0x30C9E, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCAA0C8ProtocolA2aDP3put8endpoint7payloadqd__SS_qd_0_tYaKSeRd__SERd_0_r0_lFTW', symObjAddr: 0x2560, symBinAddr: 0x4D10, symSize: 0xA0 }
+  - { offsetInCU: 0x145B, offset: 0x30DEB, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataV15_RepresentationOWOe', symObjAddr: 0x15A0, symBinAddr: 0x3D50, symSize: 0x40 }
+  - { offsetInCU: 0x14C2, offset: 0x30E52, size: 0x8, addend: 0x0, symName: '_$s11MiniService10APIServiceCMa', symObjAddr: 0x2890, symBinAddr: 0x5040, symSize: 0x20 }
+  - { offsetInCU: 0x14D6, offset: 0x30E66, size: 0x8, addend: 0x0, symName: ___swift_instantiateConcreteTypeFromMangledName, symObjAddr: 0x28E0, symBinAddr: 0x5090, symSize: 0x40 }
+  - { offsetInCU: 0x14F1, offset: 0x30E81, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFAG_AItyYaKXEfU_', symObjAddr: 0x2920, symBinAddr: 0x50D0, symSize: 0x50 }
+  - { offsetInCU: 0x1524, offset: 0x30EB4, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFAG_AItyYaKXEfU_TY0_', symObjAddr: 0x2970, symBinAddr: 0x5120, symSize: 0x2F0 }
+  - { offsetInCU: 0x155E, offset: 0x30EEE, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFAG_AItyYaKXEfU_TQ1_', symObjAddr: 0x2C60, symBinAddr: 0x5410, symSize: 0x60 }
+  - { offsetInCU: 0x15B8, offset: 0x30F48, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFAG_AItyYaKXEfU_TA', symObjAddr: 0x2CC0, symBinAddr: 0x5470, symSize: 0x80 }
+  - { offsetInCU: 0x15E1, offset: 0x30F71, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFyyYbXEfU0_', symObjAddr: 0x2D40, symBinAddr: 0x54F0, symSize: 0x60 }
+  - { offsetInCU: 0x15F9, offset: 0x30F89, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFyyYbXEfU0_TA', symObjAddr: 0x2DA0, symBinAddr: 0x5550, symSize: 0x20 }
+  - { offsetInCU: 0x160D, offset: 0x30F9D, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFAG_AItyYaKXEfU_yScCyAG_AIts5Error_pGXEfU_yAGSg_AISgsAL_pSgtYbcfU_', symObjAddr: 0x2DC0, symBinAddr: 0x5570, symSize: 0x90 }
+  - { offsetInCU: 0x1632, offset: 0x30FC2, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataVSgSo13NSURLResponseCSgs5Error_pSgIeghggg_So6NSDataCSgAGSo7NSErrorCSgIeyBhyyy_TR', symObjAddr: 0x2E70, symBinAddr: 0x5620, symSize: 0xF0 }
+  - { offsetInCU: 0x164A, offset: 0x30FDA, size: 0x8, addend: 0x0, symName: _block_copy_helper, symObjAddr: 0x2F60, symBinAddr: 0x5710, symSize: 0x20 }
+  - { offsetInCU: 0x165E, offset: 0x30FEE, size: 0x8, addend: 0x0, symName: _block_destroy_helper, symObjAddr: 0x2F80, symBinAddr: 0x5730, symSize: 0x10 }
+  - { offsetInCU: 0x1672, offset: 0x31002, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataVSgWOe', symObjAddr: 0x2F90, symBinAddr: 0x5740, symSize: 0x20 }
+  - { offsetInCU: 0x1686, offset: 0x31016, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataVSgWOy', symObjAddr: 0x2FB0, symBinAddr: 0x5760, symSize: 0x20 }
+  - { offsetInCU: 0x169A, offset: 0x3102A, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataV15_RepresentationOWOy', symObjAddr: 0x2FD0, symBinAddr: 0x5780, symSize: 0x60 }
+  - { offsetInCU: 0x16AE, offset: 0x3103E, size: 0x8, addend: 0x0, symName: '_$s10Foundation3URLVSgWOh', symObjAddr: 0x3100, symBinAddr: 0x58B0, symSize: 0x30 }
+  - { offsetInCU: 0x16C2, offset: 0x31052, size: 0x8, addend: 0x0, symName: '_$sSD8IteratorV8_VariantOyxq___GSHRzr0_lWOe', symObjAddr: 0x3130, symBinAddr: 0x58E0, symSize: 0x20 }
+  - { offsetInCU: 0x16D6, offset: 0x31066, size: 0x8, addend: 0x0, symName: '_$sSo16os_unfair_lock_sVMa', symObjAddr: 0x3150, symBinAddr: 0x5900, symSize: 0x30 }
+  - { offsetInCU: 0x1750, offset: 0x310E0, size: 0x8, addend: 0x0, symName: '_$sSTsE7forEachyyy7ElementQzKXEKFSDyS2SG_Tg5153$s11MiniService10APIServiceC16createURLRequest33_186B69A83AA054F6976F0E6398887C91LL_6method4body10Foundation0E0VSS_AC6MethodAELLOAH4DataVSgtFySS_SStXEfU_10Foundation10URLRequestVTf1cn_n', symObjAddr: 0x3D0, symBinAddr: 0x2B80, symSize: 0x1C0 }
+  - { offsetInCU: 0x1927, offset: 0x312B7, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKF', symObjAddr: 0xE10, symBinAddr: 0x35C0, symSize: 0x40 }
+  - { offsetInCU: 0x195E, offset: 0x312EE, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFTY0_', symObjAddr: 0xE50, symBinAddr: 0x3600, symSize: 0x480 }
+  - { offsetInCU: 0x19FA, offset: 0x3138A, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFTQ1_', symObjAddr: 0x12D0, symBinAddr: 0x3A80, symSize: 0x70 }
+  - { offsetInCU: 0x1A65, offset: 0x313F5, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFTY2_', symObjAddr: 0x1340, symBinAddr: 0x3AF0, symSize: 0x60 }
+  - { offsetInCU: 0x1A9C, offset: 0x3142C, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFTY3_', symObjAddr: 0x13A0, symBinAddr: 0x3B50, symSize: 0x40 }
+  - { offsetInCU: 0x1AD3, offset: 0x31463, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFTQ4_', symObjAddr: 0x13E0, symBinAddr: 0x3B90, symSize: 0x70 }
+  - { offsetInCU: 0x1B3E, offset: 0x314CE, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFTY5_', symObjAddr: 0x1450, symBinAddr: 0x3C00, symSize: 0x60 }
+  - { offsetInCU: 0x1B75, offset: 0x31505, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFTY6_', symObjAddr: 0x14B0, symBinAddr: 0x3C60, symSize: 0x70 }
+  - { offsetInCU: 0x1BAC, offset: 0x3153C, size: 0x8, addend: 0x0, symName: '_$sSo12NSURLSessionC10FoundationE4data3forAC4DataV_So13NSURLResponseCtAC10URLRequestV_tYaKFTQ7_', symObjAddr: 0x1520, symBinAddr: 0x3CD0, symSize: 0x80 }
+...
