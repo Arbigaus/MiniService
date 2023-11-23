@@ -20,4 +20,6 @@ xcodebuild -create-xcframework \
     -framework ./build/$SchemeName-macOS.xcarchive/Products/usr/local/lib/MiniService.framework \
     -output ./$SchemeName.xcframework
 
-
+echo "Creating the zip file"
+zip ./$SchemeName.zip ./$SchemeName.xcframework
+echo "File compacted succefull"
