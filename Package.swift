@@ -14,7 +14,7 @@ let package = Package(
         .library(
             name: "MiniService",
 //            type: .dynamic,
-            targets: ["MiniServiceSDK"]),
+            targets: ["MiniService"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
