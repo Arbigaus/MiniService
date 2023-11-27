@@ -4,7 +4,7 @@ SchemeName=MiniService
 DerivedDataPath="~/Library/Developer/Xcode/DerivedData/"
 
 echo "Cleaning build folder if exist"
-rm -rf build/
+rm -rf ./build/*.xcarchive
 echo "Build folder removed"
 
 echo "Starting the archive proccess"
@@ -18,8 +18,9 @@ xcodebuild -create-xcframework \
     -framework ./build/$SchemeName-iOS.xcarchive/Products/usr/local/lib/MiniService.framework \
     -framework ./build/$SchemeName-iOSSimulator.xcarchive/Products/usr/local/lib/MiniService.framework \
     -framework ./build/$SchemeName-macOS.xcarchive/Products/usr/local/lib/MiniService.framework \
-    -output ./$SchemeName.xcframework
+    -output ./build/$SchemeName.xcframework
 
 echo "Creating the zip file"
-zip ./$SchemeName.zip ./$SchemeName.xcframework
+zip -r ./$SchemeName.zip ./build/$SchemeName.xcframework/*
+rm -rf ./build/*.xcarchive
 echo "File compacted succefull"
