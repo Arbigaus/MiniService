@@ -31,6 +31,6 @@ let package = Package(
             dependencies: ["MiniService"]),
         .binaryTarget(
             name: "MiniServiceSDK",
-            path: "MiniService.xcframework")
+            path: "./build/MiniService.xcframework")
     ]
 )
