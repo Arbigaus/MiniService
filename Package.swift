@@ -13,7 +13,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "MiniService",
-            type: .dynamic,
+//            type: .dynamic,
             targets: ["MiniService"]),
     ],
     dependencies: [
@@ -28,9 +28,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "MiniServiceTests",
-            dependencies: ["MiniService"]),
-        .binaryTarget(
-            name: "MiniServiceSDK",
-            path: "./build/MiniService.xcframework")
+            dependencies: ["MiniService"])
     ]
 )
