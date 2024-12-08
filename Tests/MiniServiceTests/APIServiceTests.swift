@@ -71,6 +71,19 @@ final class APIServiceTests: XCTestCase {
         }
     }
 
+    func test_allMethods_deliversErrorOnNon200HttpResponseUsingMakeRequest() async {
+        let samples = [199, 300, 400, 500]
+
+        for sample in samples {
+            for method in RequestMethod.allCases {
+                let response = makeResponse(sample)
+                let expectedError: FakeResult = .failure(NSError(domain: "Response error", code: sample))
+
+                await expect(wit: response, endpoint: "non200Errors", expectedResult: expectedError, method: method, makeRequest: true)
+            }
+        }
+    }
+
     func test_postToURL_succeddsWithDataAndResponse200() async {
         let (_, jsonData) = makePayload()
         let expectedObject = makeFakeResponseObject()
@@ -83,6 +96,19 @@ final class APIServiceTests: XCTestCase {
                      method: .post)
     }
 
+    func test_postToURL_succeddsWithDataAndResponse200UsingMakeRequest() async {
+        let (_, jsonData) = makePayload()
+        let expectedObject = makeFakeResponseObject()
+        let response = makeResponse()
+
+        await expect(wit: response,
+                     data: jsonData,
+                     endpoint: "postTest",
+                     expectedResult: .success([expectedObject]),
+                     method: .post,
+                     makeRequest: true)
+    }
+
     func test_putToURL_succeddsWithDataAndResponse200() async {
         let (_, jsonData) = makePayload()
         let expectedObject = makeFakeResponseObject()
@@ -90,7 +116,7 @@ final class APIServiceTests: XCTestCase {
 
         await expect(wit: response,
                      data: jsonData,
-                     endpoint: "pustTest",
+                     endpoint: "putTest",
                      expectedResult: .success([expectedObject]),
                      method: .put)
     }
@@ -120,13 +146,19 @@ final class APIServiceTests: XCTestCase {
                         endpoint: String,
                         expectedResult: FakeResult,
                         method: RequestMethod = .get,
+                        makeRequest: Bool = false,
                         payload: FakePayloadType? = nil,
                         file: StaticString = #filePath,
                         line: UInt = #line) async {
         URLProtocolMock.requestHandler = { request in
             return (response!, data)
         }
-        let receivedResult = await makeReceivedResult(from: method, in: endpoint, with: payload)
+        let receivedResult: FakeResult
+        if makeRequest {
+            receivedResult = await makeReceiveResultUsingMakeRequest(from: method, in: endpoint, with: payload)
+        } else {
+            receivedResult = await makeReceivedResult(from: method, in: endpoint, with: payload)
+        }
 
         switch (receivedResult, expectedResult) {
 
@@ -139,6 +171,21 @@ final class APIServiceTests: XCTestCase {
         default:
             XCTFail("Exptected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
 
+        }
+    }
+
+    private func makeReceiveResultUsingMakeRequest(from method: RequestMethod, in endpoint: String, with payload: FakePayloadType?, headers: [String: String]? = nil) async -> FakeResult {
+        let apiMethod = getApiMethod(from: method)
+
+        let (optionalPayload, data) = makePayload()
+        do  {
+            let result: FakeResponseType = try await makeSUT()
+                .insertHeader(headers)
+                .makeRequest(method: apiMethod, endpoint: endpoint, payload: payload)
+
+            return .success([result])
+        } catch (let error as NSError) {
+            return .failure(error)
         }
     }
 
@@ -223,5 +270,15 @@ final class APIServiceTests: XCTestCase {
         return fakeObject
     }
 
+    private func getApiMethod(from method: RequestMethod) -> APIService.Method {
+        switch method {
+        case .get:
+            return .get
+        case .post:
+            return .post
+        case .put:
+            return .put
+        }
+    }
 }
 

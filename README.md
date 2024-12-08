@@ -20,72 +20,44 @@ APIService.setBaseURL("https://url.com/")
 
 After setting the **baseURL**, you can use the `APIService` class in your `Models`
 
-### Get:
+### General Request: `makeRequest`
 
-You will need a `Decodable` object that conforms with the `json` file that you will receive from the API.  
-
-#### Example:
-
-```Swift
-struct MyObject: Decodable {
-    let id: String
-    let name: String
-}
-```
-
-Then you can use the `get` method, it is recomended using the `do/catch` to handle errors.
-
-```Swift
-let service: APIServiceProtocol = APIService()
-
-do {
-    let myObject: MyObject = try await service.get(endpoint: "endpoint") 
-    // Do what you need with your object.
-} catch(let error) {
-    // Handle with error
-}
-```
-
-### Post:
-
-To use the Post, besides the `Decodable` object to convert the API response into your Swift project, you will need a `Encodable` object to send to the API that you need.
+The `makeRequest` method combines the functionality of the `get`, `post`, and `put` methods into one, simplifying HTTP requests. You can specify the HTTP method, endpoint, and an optional payload.
 
 #### Example:
 
 ```Swift
-struct AnotherObject: Encodable {
+struct User: Codable {
+    let id: Int
     let name: String
 }
-```
-Then you can use the `post` method, passing the object as a payload, like the `get` method, it is recomended using the `do/catch` to handle errors.
 
-```Swift
+struct NewUser: Codable {
+    let name: String
+}
+
 let service: APIServiceProtocol = APIService()
 
 do {
-    let anotherObject = AnotherObject(name: "Some Name")
-    let myObject: MyObject = try await service.post(endpoint: "endpoint", payload: accountToCreate) 
-    // Do what you need with your object.
+    // Example of a POST request
+    let newUser = NewUser(name: "John Doe")
+    let createdUser: User = try await service.makeRequest(
+        method: .post,
+        endpoint: "users",
+        payload: newUser
+    )
+    print("User created with ID: \(createdUser.id)")
+    
+    // Example of a GET request
+    let fetchedUser: User = try await service.makeRequest(
+        method: .get,
+        endpoint: "users/\(createdUser.id)"
+    )
+    print("Fetched user: \(fetchedUser.name)")
+    
 } catch(let error) {
-    // Handle with error
+    print("An error occurred: \(error.localizedDescription)")
 }
-```
-
-### Put:
-
-To use the `put` method, it is the same as the `post` method.
-
-```Swift
-let service: APIServiceProtocol = APIService()
-
-do {
-    let anotherObject = AnotherObject(name: "Some Name")
-    let myObject: MyObject = try await service.put(endpoint: "endpoint", payload: accountToCreate) 
-    // Do what you need with your object.
-} catch(let error) {
-    // Handle with error
-}
-```
 
 ### Headers:
 
@@ -94,7 +66,13 @@ To pass `Headers` in the requests, you can use the method `insertHeader`, passin
 ```Swift
 let headers: [String: String] = ["Content-Type": "application/json", "Authorization": "Bearer token"]
 
-let getObject: MyObject = try await service.insertHeader(headers).get(endpoint: "endpoint") 
-let postObject: MyObject = try await service.insertHeader(headers).post(endpoint: "endpoint", payload: accountToCreate) 
-let putObject: MyObject = try await service.insertHeader(headers).put(endpoint: "endpoint", payload: accountToCreate) 
+do {
+    let newUser = NewUser(name: "John Doe")
+    let createdUser: User = try await service
+        .insertHeader(headers)
+        .makeRequest(method: .post, endpoint: "users", payload: newUser)
+    print("User created with ID: \(createdUser.id)")
+} catch(let error) {
+    print("An error occurred: \(error.localizedDescription)")
+}
 ```
