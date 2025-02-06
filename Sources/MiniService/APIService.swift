@@ -14,6 +14,7 @@ public protocol APIServiceProtocol {
     func post<ResponseType: Decodable, PayloadType: Encodable>(endpoint: String, payload: PayloadType) async throws -> ResponseType
     func put<ResponseType: Decodable, PayloadType: Encodable>(endpoint: String, payload: PayloadType) async throws -> ResponseType
     func makeRequest<ResponseType: Decodable, PayloadType: Encodable>(method: APIService.Method, endpoint: String, payload: PayloadType?) async throws -> ResponseType
+    func makeRequest<ResponseType: Decodable>(method: Method, endpoint: String) async throws -> ResponseType
 }
 
 public final class APIService: APIServiceProtocol {
@@ -81,7 +82,7 @@ public final class APIService: APIServiceProtocol {
         return self
     }
 
-    /// Executes an HTTP request using the specified HTTP method, endpoint, and an optional payload.
+    /// Executes an HTTP request using the specified HTTP method, endpoint and payload (body in the request).
     /// - Parameters:
     ///   - method: The HTTP method to use for the request (e.g., `.get`, `.post`, `.put`, `.delete`).
     ///   - endpoint: The relative endpoint of the API (e.g., "/users", "/products/1").
@@ -116,10 +117,56 @@ public final class APIService: APIServiceProtocol {
     ///     print("Failed to create user: \(error.localizedDescription)")
     /// }
     /// ```
-    public func makeRequest<ResponseType: Decodable, PayloadType: Encodable>(method: Method, endpoint: String, payload: PayloadType?) async throws -> ResponseType {
+    public func makeRequest<ResponseType: Decodable, PayloadType: Encodable>(method: Method, endpoint: String, payload: PayloadType) async throws -> ResponseType {
         do {
             let body = try JSONEncoder().encode(payload)
             let request = createURLRequest(endpoint, method: method, body: body)
+            let (data, response) = try await URLSession.shared.data(for: request)
+
+            return try handleRequest(with: data, and: response)
+
+        } catch(let error) {
+            throw NSError(domain: error.localizedDescription, code: error._code)
+        }
+    }
+
+    /// Executes an HTTP request using the specified HTTP method, endpoint, without payload (body in the request).
+    /// - Parameters:
+    ///   - method: The HTTP method to use for the request (e.g., `.get`, `.post`, `.put`, `.delete`).
+    ///   - endpoint: The relative endpoint of the API (e.g., "/users", "/products/1").
+    /// - Returns: A decoded instance of the specified `ResponseType`, conforming to `Decodable`.
+    /// - Throws: An error if the request fails, the server returns an invalid response, or decoding the response fails.
+    /// - Note: This is the primary method for making API requests. It replaces the `get`, `post`, and `put` methods, which are now deprecated.
+    ///
+    /// # Example:
+    /// ```swift
+    /// struct User: Codable {
+    ///     let id: Int
+    ///     let name: String
+    /// }
+    ///
+    /// struct NewUser: Codable {
+    ///     let name: String
+    /// }
+    ///
+    /// let apiService = APIService()
+    /// APIService.setBaseURL("https://example.com/api")
+    ///
+    /// let newUser = NewUser(name: "John Doe")
+    /// do {
+    ///     let createdUser: User = try await apiService.makeRequest(
+    ///         method: .post,
+    ///         endpoint: "/users",
+    ///         payload: newUser
+    ///     )
+    ///     print("User created with ID: \(createdUser.id)")
+    /// } catch {
+    ///     print("Failed to create user: \(error.localizedDescription)")
+    /// }
+    /// ```
+    public func makeRequest<ResponseType: Decodable>(method: Method, endpoint: String) async throws -> ResponseType {
+        do {
+            let request = createURLRequest(endpoint, method: method)
             let (data, response) = try await URLSession.shared.data(for: request)
 
             return try handleRequest(with: data, and: response)
