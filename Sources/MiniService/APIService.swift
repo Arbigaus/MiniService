@@ -13,8 +13,8 @@ public protocol APIServiceProtocol {
     func get<ResponseType: Decodable>(endpoint: String) async throws -> ResponseType
     func post<ResponseType: Decodable, PayloadType: Encodable>(endpoint: String, payload: PayloadType) async throws -> ResponseType
     func put<ResponseType: Decodable, PayloadType: Encodable>(endpoint: String, payload: PayloadType) async throws -> ResponseType
-    func makeRequest<ResponseType: Decodable, PayloadType: Encodable>(method: APIService.Method, endpoint: String, payload: PayloadType?) async throws -> ResponseType
-    func makeRequest<ResponseType: Decodable>(method: Method, endpoint: String) async throws -> ResponseType
+    func makeRequest<ResponseType: Decodable, PayloadType: Encodable>(method: APIService.Method, endpoint: String, payload: PayloadType) async throws -> ResponseType
+    func makeRequest<ResponseType: Decodable>(method: APIService.Method, endpoint: String) async throws -> ResponseType
 }
 
 public final class APIService: APIServiceProtocol {
@@ -117,7 +117,7 @@ public final class APIService: APIServiceProtocol {
     ///     print("Failed to create user: \(error.localizedDescription)")
     /// }
     /// ```
-    public func makeRequest<ResponseType: Decodable, PayloadType: Encodable>(method: Method, endpoint: String, payload: PayloadType) async throws -> ResponseType {
+    public func makeRequest<ResponseType: Decodable, PayloadType: Encodable>(method: APIService.Method, endpoint: String, payload: PayloadType) async throws -> ResponseType {
         do {
             let body = try JSONEncoder().encode(payload)
             let request = createURLRequest(endpoint, method: method, body: body)
@@ -152,24 +152,22 @@ public final class APIService: APIServiceProtocol {
     /// let apiService = APIService()
     /// APIService.setBaseURL("https://example.com/api")
     ///
-    /// let newUser = NewUser(name: "John Doe")
     /// do {
-    ///     let createdUser: User = try await apiService.makeRequest(
-    ///         method: .post,
-    ///         endpoint: "/users",
-    ///         payload: newUser
+    ///     let data: User = try await apiService.makeRequest(
+    ///         method: .get,
+    ///         endpoint: "/user/\(user.id)"
     ///     )
-    ///     print("User created with ID: \(createdUser.id)")
+    ///     print("User: \(data)")
     /// } catch {
-    ///     print("Failed to create user: \(error.localizedDescription)")
+    ///     print("Failed to get user: \(error.localizedDescription)")
     /// }
     /// ```
-    public func makeRequest<ResponseType: Decodable>(method: Method, endpoint: String) async throws -> ResponseType {
+    public func makeRequest<ResponseType: Decodable>(method: APIService.Method, endpoint: String) async throws -> ResponseType {
         do {
             let request = createURLRequest(endpoint, method: method)
             let (data, response) = try await URLSession.shared.data(for: request)
 
-            return try handleRequest(with: data, and: response)
+            return try handleRequest(with: data, and: response) as ResponseType
 
         } catch(let error) {
             throw NSError(domain: error.localizedDescription, code: error._code)
